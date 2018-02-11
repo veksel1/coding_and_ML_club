@@ -114,30 +114,30 @@ feature_labels_basic = feature_labels
 
 #additional features
 feature_labels_non_linear = [
-        'age^2',
-        'age^3',
+#        'age^2',
+#        'age^3',
 #        'age^4',
         'female_class_1',
         'female_class_2',
         'female_class_3',
-        'SibSp^2',
-        'SibSp^3', 
+#        'SibSp^2',
+#        'SibSp^3', 
 #        'SibSp^4', 
-        'parch^2', 
-        'parch^3',
+#        'parch^2', 
+#        'parch^3',
 #        'parch^4', 
-        'price_per_person^2', 
-        'price_per_person^3',
+#        'price_per_person^2', 
+#        'price_per_person^3',
 #        'price_per_person^4',
         ]
 
 #adding non linearity to features (uncomment to remove)
-feature_labels = feature_labels + feature_labels_non_linear
+#feature_labels = feature_labels + feature_labels_non_linear
 
 target = 'Survived'
 
 # dataset import in Pandas
-given_train_data = pd.read_csv('C:\\Users\\ilja.surikovs\\Documents\\GitHub\\coding_club\\titanic\\train.csv') #, dtype = {'name':str,'review':str,'rating':int})
+given_train_data = pd.read_csv('C:\\Users\\ilja.surikovs\\Documents\\GitHub\\coding_and_ML_club\\titanic\\train.csv') #, dtype = {'name':str,'review':str,'rating':int})
 
 #formatting data    
 clean_data = formatData(given_train_data)
@@ -218,11 +218,11 @@ decTree2 = DecisionTreeClassifier(min_samples_split=18, min_samples_leaf=9)
 decTree2.fit(features_full_train, survived_full_train)
 predictions_full_train = decTree2.predict(features_full_train)
 score_full_train = decTree2.score(features_full_train, survived_full_train)
-print('SVM - from full initain "train" dataset results:')
+print('Decision Tree - from full initain "train" dataset results:')
 printRegResults(decTree2, clean_data, predictions_full_train, score_full_train)
 
 # predicting test data with SVM
-test_data = pd.read_csv('C:\\Users\\ilja.surikovs\\Documents\\GitHub\\coding_club\\titanic\\test.csv') 
+test_data = pd.read_csv('C:\\Users\\ilja.surikovs\\Documents\\GitHub\\coding_and_ML_club\\titanic\\test.csv') 
 test_data = formatData(test_data)
 test_data = addNonLinearity(test_data)
 
@@ -232,7 +232,7 @@ predictions_test = decTree2.predict(features_test)
 test_data['Survived'] = predictions_test
 
 answers = test_data[['PassengerId','Survived']]
-answers.to_csv('C:\\Users\\ilja.surikovs\\Documents\\GitHub\\coding_club\\titanic\\answers.csv')
+answers.to_csv('C:\\Users\\ilja.surikovs\\Documents\\GitHub\\coding_and_ML_club\\titanic\\answers.csv')
 
 ##----------------------------------------------------------------------------------
 
