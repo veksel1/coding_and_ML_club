@@ -38,6 +38,7 @@ def formatData(data):
     
     data['child_travelled_with_nanny'] = data['Parch'].apply(lambda parentsNum: 1 if parentsNum == 0 else 0)
     data['child_travelled_with_nanny'][data['Age']>=14] = 0
+    
     #replace missing data with means - !!!!! can improve here!!!!!!!!!!!!
     for feature in feature_labels_basic:
         data[feature].fillna(data[feature].mean(), inplace=True)
@@ -193,21 +194,21 @@ features_valid = valid_set[feature_labels]
 
 ##----------------------------------------------------------------------------------
 # try decision trees
-for minImpur in range(0, 1, 1):
-    print('minImpur =', minImpur)
-    decTree= DecisionTreeClassifier(min_samples_split=18, min_samples_leaf=9)
-    
-    decTree.fit(features_train, survived_train) 
-    score_train = decTree.score(features_train, survived_train)
-    predictions_train = decTree.predict(features_train)
+#for minImpur in range(0, 1, 1):
+  #  print('minImpur =', minImpur)
+decTree= DecisionTreeClassifier(min_samples_split=18, min_samples_leaf=9)
+
+decTree.fit(features_train, survived_train) 
+score_train = decTree.score(features_train, survived_train)
+predictions_train = decTree.predict(features_train)
 #    print('decTree - train-set results:')
 #    printRegResults(decTree, train_set, predictions_train, score_train)
-    
-    #valid-set
-    predictions_valid = decTree.predict(features_valid)
-    score_valid = decTree.score(features_valid, survived_valid)
-    print('decTree - validation-set results:')
-    printRegResults(decTree, valid_set, predictions_valid, score_valid)
+
+#valid-set
+predictions_valid = decTree.predict(features_valid)
+score_valid = decTree.score(features_valid, survived_valid)
+print('decTree - validation-set results:')
+printRegResults(decTree, valid_set, predictions_valid, score_valid)
 
 #---------------------------------------------------------------------------------
 #training Decision Tree on full data set and predicting on training set
